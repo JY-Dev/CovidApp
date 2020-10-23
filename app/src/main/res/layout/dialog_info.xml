@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/plus_btn_back">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ff0000"
+        android:text="INFORMATION"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/info_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:textAlignment="center"
+        android:text="집에서 3~4일간 휴식을 취해주세요"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp">
+
+        <Button
+            android:id="@+id/call_1339_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/plus_btn"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:visibility="gone"
+            android:text="콜센터 1339"/>
+
+        <Button
+            android:id="@+id/ok_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/plus_btn"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:visibility="gone"
+            android:text="확인"/>
+
+    </LinearLayout>
+
+</LinearLayout>
