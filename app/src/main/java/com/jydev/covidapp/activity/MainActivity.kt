@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         start_btn.setOnClickListener {
-            startActivity(Intent(this,SelfDiagnosisActivity::class.java))
+            startActivity(Intent(this, SelfDiagnosisActivity::class.java))
         }
     }
 
@@ -30,35 +30,32 @@ class MainActivity : AppCompatActivity() {
         reqData()
     }
 
-    private fun reqData(){
+    private fun reqData() {
         val cal = Calendar.getInstance()
-        val simpleDateFormat = SimpleDateFormat("YYYYMMdd",Locale.KOREA)
+        val simpleDateFormat = SimpleDateFormat("YYYYMMdd", Locale.KOREA)
         val date = simpleDateFormat.format(cal.time)
 
         val service = ApiClient.getRetrofit()?.create(ApiService::class.java)
-        val call = service?.getData(ApiClient.apiKey,1,10,date,date)
+        val call = service?.getData(ApiClient.apiKey, 1, 10, date, date)
         call?.enqueue(object : Callback<CovidData> {
             override fun onFailure(call: Call<CovidData>, t: Throwable) {
-                    t.printStackTrace()
+                t.printStackTrace()
             }
 
             override fun onResponse(
                 call: Call<CovidData>,
                 response: Response<CovidData>
             ) {
-
-                if(response.body()?.itemList!=null){
-                    runOnUiThread {
-                        val myFormatter = DecimalFormat("###,###")
-                        val data = response.body()?.itemList?.get(0)
-                        totalTv.text = myFormatter.format(data?.decideCnt).toString()
-                        careTv.text = myFormatter.format(data?.careCnt).toString()
-                        deathTv.text = myFormatter.format(data?.deathCnt).toString()
-                        clearTv.text = myFormatter.format(data?.clearCnt).toString()
-                    }
-
+                runOnUiThread {
+                    val myFormatter = DecimalFormat("###,###")
+                    if (response.body()?.itemList?.size!! > 0)
+                        response.body()?.itemList?.get(0)?.apply {
+                            totalTv.text = myFormatter.format(decideCnt).toString()
+                            careTv.text = myFormatter.format(careCnt).toString()
+                            deathTv.text = myFormatter.format(deathCnt).toString()
+                            clearTv.text = myFormatter.format(clearCnt).toString()
+                        }
                 }
-
             }
 
         })
